@@ -182,7 +182,7 @@ public class UserInterface {
         selectedVehicle = null;
 
         for (Vehicle vehicle : dealership.getAllVehicles()) {
-            if (vehicle.getVin() == vin)
+            if (vehicle.getVin() == vin) {
                 selectedVehicle = vehicle;
                 break;
             }
@@ -194,7 +194,15 @@ public class UserInterface {
 
         }
 
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter email: ");
+        String email = scanner.nextLine();
 
+        System.out.print("Is this a sale or lease? (sale/lease): ");
+        String choice = scanner.nextLine().toLowerCase();
+
+        
     }
 
 }
