@@ -17,7 +17,7 @@ public class ContractFileManager {
     public Contract saveContract(Contract contract) {
         StringBuilder input = new StringBuilder();
 
-        try (BufferedWriter write = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
 
 
             if (contract instanceof SalesContract sale) {
@@ -42,8 +42,8 @@ public class ContractFileManager {
                         .append(sale.isFinanceOption() ? "YES" : "NO").append("|")
                         .append(sale.getMonthlyPayment());
 
-                write.append(input);
-                // write: SALE|date|name|email|vehicle details|fees|finance|payment
+                writer.append(input);
+
             } else if (contract instanceof LeaseContract lease) {
                 Vehicle vehicle = lease.getVehicleSold();
                 input.append("LEASE|")
@@ -65,7 +65,7 @@ public class ContractFileManager {
 
 
 
-                write.append(input);
+                writer.append(input);
             }
 
         } catch (IOException e) {

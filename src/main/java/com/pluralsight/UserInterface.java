@@ -26,44 +26,25 @@ public class UserInterface {
             System.out.println("7. Get all vehicles");
             System.out.println("8. Add vehicle");
             System.out.println("9. Remove vehicle");
-            System.out.println("99. Quit");
+            System.out.println("10. Quit");
+            System.out.println("11 - Sell/Lease a vehicle");
 
             System.out.print("Enter your choice: ");
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1":
-                    processGetByPriceRequest();
-                    break;
-                case "2":
-                    processGetByMakeModelRequest();
-                    break;
-                case "3":
-                    processGetByYearRequest();
-                    break;
-                case "4":
-                    processGetByColorRequest();
-                    break;
-                case "5":
-                    processGetByMileageRequest();
-                    break;
-                case "6":
-                    processGetByVehicleTypeRequest();
-                    break;
-                case "7":
-                    processGetAllVehiclesRequest();
-                    break;
-                case "8":
-                    processAddVehicleRequest();
-                    break;
-                case "9":
-                    processRemoveVehicleRequest();
-                    break;
-                case "99":
-                    quit = true;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
+                case "1" -> processGetByPriceRequest();
+                case "2" -> processGetByMakeModelRequest();
+                case "3" -> processGetByYearRequest();
+                case "4" -> processGetByColorRequest();
+                case "5" -> processGetByMileageRequest();
+                case "6" -> processGetByVehicleTypeRequest();
+                case "7" -> processGetAllVehiclesRequest();
+                case "8" -> processAddVehicleRequest();
+                case "9" -> processRemoveVehicleRequest();
+                case "10" -> quit = true;
+                case "11" -> processSellOrLeaseRequest();
+                default -> System.out.println("Invalid choice. Please try again.");
             }
         }
     }
@@ -193,5 +174,7 @@ public class UserInterface {
             System.out.println(vehicle.toString());
         }
     }
+
+    
 
 }
