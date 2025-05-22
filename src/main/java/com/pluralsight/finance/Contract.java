@@ -19,6 +19,10 @@ public abstract class Contract {
         this.monthlyPayment = monthlyPayment;
     }
 
+    public Contract() {
+
+    }
+
     public String getContractDate() {
         return contractDate;
     }

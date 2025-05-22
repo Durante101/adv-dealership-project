@@ -14,6 +14,9 @@ public class SalesContract extends Contract{
         this.financeOption = financeOption;
     }
 
+    public SalesContract(String date, String name, String email, Vehicle selectedVehicle, boolean isFinanceOption) {
+    }
+
     public double getSalesTaxAmount() {
         return salesTaxAmount;
     }

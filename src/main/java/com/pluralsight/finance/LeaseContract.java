@@ -13,6 +13,10 @@ public class LeaseContract extends Contract {
         this.leaseFee = leaseFee;
     }
 
+    public LeaseContract(String date, String name, String email, Vehicle selectedVehicle) {
+        super();
+    }
+
     public double getExpectedEndingValue() {
         return expectedEndingValue;
     }

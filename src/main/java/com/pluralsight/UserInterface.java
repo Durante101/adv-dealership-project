@@ -1,5 +1,11 @@
 package com.pluralsight;
 
+import com.pluralsight.finance.Contract;
+import com.pluralsight.finance.ContractFileManager;
+import com.pluralsight.finance.LeaseContract;
+import com.pluralsight.finance.SalesContract;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -175,11 +181,11 @@ public class UserInterface {
         }
     }
 
-    public void processSellOrLeaseRequest(Vehicle selectedVehicle) {
+    public void processSellOrLeaseRequest() {
         System.out.print("Enter VIN of vehicle to sell or lease: ");
         int vin = Integer.parseInt(scanner.nextLine());
 
-        selectedVehicle = null;
+        Vehicle selectedVehicle = null;
 
         for (Vehicle vehicle : dealership.getAllVehicles()) {
             if (vehicle.getVin() == vin) {
@@ -202,8 +208,48 @@ public class UserInterface {
         System.out.print("Is this a sale or lease? (sale/lease): ");
         String choice = scanner.nextLine().toLowerCase();
 
-        
+        String date = LocalDate.now().toString();
+
+
+        Contract contract = null;
+
+
+        if (choice.equals("sale")) {
+            System.out.print("Is this being financed? (yes/no): ");
+            String financeInput = scanner.nextLine().trim().toLowerCase();
+            boolean isFinanceOption = financeInput.equals("yes");
+            contract = new SalesContract(date, name, email, selectedVehicle, isFinanceOption);
+
+        }   else if (choice.equals("lease")) {
+            int currentYear = LocalDate.now().getYear();
+            int vehicleYear = selectedVehicle.getYear();
+
+            if ((currentYear - vehicleYear) > 3) {
+                System.out.println("Vehicle too old to lease. Leases only allowed for vehicles ≤ 3 years old.");
+                return;
+            }
+
+            contract = new LeaseContract(date, name, email, selectedVehicle);
+
+        } else {
+            System.out.println("Invalid option. Please type 'sale' or 'lease'.");
+            return;
+        }
+
+        // Save the contract and update dealership
+        ContractFileManager contractFileManager = new ContractFileManager();
+        contractFileManager.saveContract(contract);
+
+        dealership.removeVehicle(selectedVehicle.getVin());
+
+        DealershipFileManager dealershipFileManager = new DealershipFileManager();
+        dealershipFileManager.saveDealership(dealership);
+
+        System.out.println("Contract recorded and vehicle removed from inventory.");
+
     }
+
+
 
 }
 
