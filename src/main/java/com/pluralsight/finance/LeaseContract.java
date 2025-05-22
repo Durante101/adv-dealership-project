@@ -1,11 +1,33 @@
 package com.pluralsight.finance;
 
+import com.pluralsight.Vehicle;
+
 public class LeaseContract extends Contract {
 
-    private double salesTaxAmount; (5%)
-    private double recordingFee; ($100)
-    private double processingFee; ($295 if under $10k, $495 otherwise)
-    private boolean finance;
+    private double expectedEndingValue = 0.50;
+    private double leaseFee;
+
+    public LeaseContract(String contractDate, String name, String email, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double expectedEndingValue, double leaseFee) {
+        super(contractDate, name, email, vehicleSold, totalPrice, monthlyPayment);
+        this.expectedEndingValue = expectedEndingValue;
+        this.leaseFee = leaseFee;
+    }
+
+    public double getExpectedEndingValue() {
+        return expectedEndingValue;
+    }
+
+    public void setExpectedEndingValue(double expectedEndingValue) {
+        this.expectedEndingValue = expectedEndingValue;
+    }
+
+    public double getLeaseFee() {
+        return leaseFee;
+    }
+
+    public void setLeaseFee(double leaseFee) {
+        this.leaseFee = leaseFee;
+    }
 
     @Override
     public double getTotalPrice() {
@@ -22,4 +44,3 @@ public class LeaseContract extends Contract {
         return monthlyPayment;
     }
 }
-

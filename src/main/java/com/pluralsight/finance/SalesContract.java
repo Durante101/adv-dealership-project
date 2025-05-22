@@ -1,44 +1,41 @@
 package com.pluralsight.finance;
 
+import com.pluralsight.Vehicle;
+
 public class SalesContract extends Contract{
-    private final double salesTax = 0.05;
+    private final double salesTaxAmount = 0.05;
     private final double recordingFee = 100;
     private double processingFee;
-    private boolean isFinanced;
+    private boolean financeOption;
 
-    public SalesContract(double processingFee, boolean isFinanced) {
+    public SalesContract(String contractDate, String name, String email, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double processingFee, boolean financeOption) {
+        super(contractDate, name, email, vehicleSold, totalPrice, monthlyPayment);
         this.processingFee = processingFee;
-        this.isFinanced = isFinanced;
-
+        this.financeOption = financeOption;
     }
 
-    public double getSalesTax() {
-        return salesTax;
+    public double getSalesTaxAmount() {
+        return salesTaxAmount;
     }
 
     public double getRecordingFee() {
         return recordingFee;
     }
 
-    public double getProcessingFee(double price) {
-        if (price < 10000) {
-            return 295;
-        } else {
-            return 495;
-        }
-
+    public double getProcessingFee() {
+        return processingFee;
     }
 
     public void setProcessingFee(double processingFee) {
         this.processingFee = processingFee;
     }
 
-    public boolean isFinanced() {
-        return isFinanced;
+    public boolean isFinanceOption() {
+        return financeOption;
     }
 
-    public void setFinanced(boolean financed) {
-        isFinanced = financed;
+    public void setFinanceOption(boolean financeOption) {
+        this.financeOption = financeOption;
     }
 
     @Override
