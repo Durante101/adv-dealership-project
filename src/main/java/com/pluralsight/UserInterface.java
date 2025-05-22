@@ -175,10 +175,27 @@ public class UserInterface {
         }
     }
 
-    public void processSellOrLeaseRequest() {
+    public void processSellOrLeaseRequest(Vehicle selectedVehicle) {
         System.out.print("Enter VIN of vehicle to sell or lease: ");
         int vin = Integer.parseInt(scanner.nextLine());
-        
+
+        selectedVehicle = null;
+
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if (vehicle.getVin() == vin)
+                selectedVehicle = vehicle;
+                break;
+            }
+        }
+
+        if (selectedVehicle == null) {
+            System.out.println("No Vehicle Found");
+            return;
+
+        }
+
+
     }
 
 }
+
