@@ -45,7 +45,26 @@ public class ContractFileManager {
                 write.append(input);
                 // write: SALE|date|name|email|vehicle details|fees|finance|payment
             } else if (contract instanceof LeaseContract lease) {
-          
+                Vehicle vehicle = lease.getVehicleSold();
+                input.append("LEASE|")
+                        .append(lease.getContractDate()).append("|")
+                        .append(lease.getName()).append("|")
+                        .append(lease.getEmail()).append("|")
+                        .append(vehicle.getVin()).append("|")
+                        .append(vehicle.getYear()).append("|")
+                        .append(vehicle.getMake()).append("|")
+                        .append(vehicle.getModel()).append("|")
+                        .append(vehicle.getVehicleType()).append("|")
+                        .append(vehicle.getColor()).append("|")
+                        .append(vehicle.getOdometer()).append("|")
+                        .append(vehicle.getPrice()).append("|")
+                        .append(lease.getExpectedEndingValue()).append("|")
+                        .append(lease.getLeaseFee()).append("|")
+                        .append(lease.getTotalPrice()).append("|")
+                        .append(lease.getMonthlyPayment());
+
+
+
                 write.append(input);
             }
 
