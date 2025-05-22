@@ -175,6 +175,10 @@ public class UserInterface {
         }
     }
 
-    
+    public void processSellOrLeaseRequest() {
+        System.out.print("Enter VIN of vehicle to sell or lease: ");
+        int vin = Integer.parseInt(scanner.nextLine());
+        
+    }
 
 }
